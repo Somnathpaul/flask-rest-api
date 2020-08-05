@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from markupsafe import escape
@@ -15,12 +15,15 @@ def home():
 
 @app.route('/about', methods=['GET'])
 def about():
-    return 'Web application REST API made with flask!'
+    return render_template('index.html')
 
 @app.route('/user/<username>')
 def user(username):
-    return 'User %s' % escape(username)
+    return 'hello %s' % escape(username)
 
+@app.route('/app/<string:name>/posts/<int:id>')
+def appUser(id, name):
+    return "Hello " + name +  " your id is: " + str(id)
 # server
 if __name__ == "__main__":
     app.run(debug=True)
