@@ -41,7 +41,7 @@ def appUser(id, name):
 
 @app.route('/post')
 def postDoc():
-    return render_template('post.html')
+    return render_template('post.html', posts=allPost)
 
 # server
 if __name__ == "__main__":
