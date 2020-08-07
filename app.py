@@ -8,6 +8,20 @@ import os
 # app
 app = Flask(__name__)
 
+# dummy data
+allPost = [
+    {
+        'id': 1,
+        'title': 'REST API with flask',
+        'body': 'Flask is cool but not as fast as node js!'
+    },
+    {
+        'id': 2,
+        'title': 'REST API with FastAPI ',
+        'body': 'FastAPI is cool and as fast as node js!'
+    },
+]
+
 # route 
 @app.route('/', methods=['GET'])
 def home():
@@ -24,6 +38,11 @@ def user(username):
 @app.route('/app/<string:name>/posts/<int:id>')
 def appUser(id, name):
     return "Hello " + name +  " your id is: " + str(id)
+
+@app.route('/post')
+def postDoc():
+    return render_template('post.html')
+
 # server
 if __name__ == "__main__":
     app.run(debug=True)
