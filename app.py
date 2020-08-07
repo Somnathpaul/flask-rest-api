@@ -6,9 +6,24 @@ from markupsafe import escape
 import os
 
 # app
-app = Flask(__name__)
+app = Flask(__name__) 
+
+# connecting to database
+app.config['SQLALCHEMY_DATABASE_URI']  = 'sqllite:///flaskposts.db'
+# create our database
+db = SQLAlchemy(app)
+# model
+class BlogPost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    body = db.Column(db.String(100), nullable=False)
+    author = db.Column(db.String(20), nullable=False, default='anonymous')
+
+    def __repr__(self):
+        return 'Blog Post ' + str(self.id)
 
 # dummy data
+
 allPost = [
     {
         'id': 1,
@@ -42,6 +57,10 @@ def appUser(id, name):
 @app.route('/post')
 def postDoc():
     return render_template('post.html', posts=allPost)
+
+@app.route('/post/api')
+def getPostApi():
+    return jsonify(allPost)
 
 # server
 if __name__ == "__main__":
