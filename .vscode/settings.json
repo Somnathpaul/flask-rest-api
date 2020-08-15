@@ -1,6 +1,5 @@
 {
     "python.pythonPath": "/Users/somnathpaul/.local/share/virtualenvs/flask-DbL-uJ7B/bin/python",
-    
     "python.linting.pylintArgs": [
         "--load-plugins",
         "pylint-flask"

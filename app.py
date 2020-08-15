@@ -9,7 +9,7 @@ import os
 app = Flask(__name__) 
 
 # connecting to database
-app.config['SQLALCHEMY_DATABASE_URI']  = 'sqllite:///flaskposts.db'
+app.config['SQLALCHEMY_DATABASE_URI']  = 'sqlite:///flaskposts.db'
 # create our database
 db = SQLAlchemy(app)
 # model
@@ -26,12 +26,12 @@ class BlogPost(db.Model):
 
 allPost = [
     {
-        'id': 1,
+        'no': 1,
         'title': 'REST API with flask',
         'body': 'Flask is cool but not as fast as node js!'
     },
     {
-        'id': 2,
+        'no': 2,
         'title': 'REST API with FastAPI ',
         'body': 'FastAPI is cool and as fast as node js!'
     },
